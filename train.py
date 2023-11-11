@@ -41,7 +41,7 @@ def download_images(urls, location: str, suffix):
 
 def load_data(file_name):
   """Load Data List"""
-  with open("{}.json".format(file_name), "r") as fp:
+  with open("./data/{}.json".format(file_name), "r") as fp:
       search_result_links_re_read = json.load(fp)
   return search_result_links_re_read
 
