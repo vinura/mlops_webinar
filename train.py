@@ -16,10 +16,11 @@ import torch.optim as optim
 import torchvision
 from torchvision import transforms
 from torch.utils.data import DataLoader
+import shutil
 
 
 # Initialize MLflow
-mlflow.set_tracking_uri('https://9d4e-34-106-115-183.ngrok-free.app')
+mlflow.set_tracking_uri('https://ad3b-34-106-115-183.ngrok-free.app/')
 exp_id = mlflow.get_experiment_by_name("mercon_exp").experiment_id
 mlflow.set_experiment(experiment_id=exp_id)
 mlflow.start_run()
@@ -38,30 +39,26 @@ def download_images(urls, location: str, suffix):
     with open(path, "wb") as f:
       f.write(response.content)
 
+def load_data(file_name):
+  """Load Data List"""
+  with open("{}.json".format(file_name), "r") as fp:
+      search_result_links_re_read = json.load(fp)
+  return search_result_links_re_read
 
-with open("./data/dogs.json", 'r') as f:
-    dgs = json.load(f)
-dgimages = []
-for dg_image in dgs["results"]:
-  dgimages.append(dg_image['image'])
+
+shutil.rmtree('photos', True)
 os.makedirs(os.path.dirname("photos/dogs/"), exist_ok=True)
+os.makedirs(os.path.dirname("photos/cats/"), exist_ok=True)
+
+
+dgimages = load_data('pet_dog')
 download_images(dgimages, "photos/dogs/", "dog")
 
-with open("./data/cats.json", 'r') as f:
-    cts = json.load(f)
-ctimages = []
-for ct_image in cts["results"]:
-  ctimages.append(ct_image['image'])
-os.makedirs(os.path.dirname("photos/cats/"), exist_ok=True)
+ctimages = load_data('pet_cat')
 download_images(ctimages, "photos/cats/", "cat")
 # classes_num = 2
 
-with open("./data/cars.json", 'r') as f:
-    crts = json.load(f)
-carimages = []
-for cr_image in crts["results"]:
-  carimages.append(cr_image['image'])
-os.makedirs(os.path.dirname("photos/cars/"), exist_ok=True)
+carimages = load_data('super_car')
 download_images(carimages, "photos/cars/", "car")
 classes_num = 3
 
