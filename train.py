@@ -14,13 +14,14 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import torchvision
-from torchvision import transforms, datasets
+from torchvision import transforms
 from torch.utils.data import DataLoader
 
 
 # Initialize MLflow
 mlflow.set_tracking_uri('https://9d4e-34-106-115-183.ngrok-free.app')
-mlflow.set_experiment(experiment_id=928853075514484510)
+exp_id = mlflow.get_experiment_by_name("mercon_exp").experiment_id
+mlflow.set_experiment(experiment_id=exp_id)
 mlflow.start_run()
 
 
