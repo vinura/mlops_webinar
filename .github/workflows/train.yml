@@ -28,4 +28,5 @@ jobs:
           notebook: "mercon.ipynb"
           isReport: False
           poll: True
+          params: "param.json"
             
