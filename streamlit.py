@@ -26,7 +26,7 @@ data_transform = transforms.Compose([
 ])
 
 # Define class labels
-class_labels = ['Cat', 'Dog']
+class_labels = ['Cat', 'Dog', 'Car']
 
 if uploaded_image is not None:
     st.image(uploaded_image, caption="Uploaded Image", use_column_width=True)
