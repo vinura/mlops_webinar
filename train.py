@@ -49,6 +49,7 @@ def load_data(file_name):
 shutil.rmtree('photos', True)
 os.makedirs(os.path.dirname("photos/dogs/"), exist_ok=True)
 os.makedirs(os.path.dirname("photos/cats/"), exist_ok=True)
+os.makedirs(os.path.dirname("photos/cars/"), exist_ok=True)
 
 
 dgimages = load_data('pet_dog')
