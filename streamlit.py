@@ -15,7 +15,7 @@ uploaded_image = st.file_uploader("Upload an image...", type=["jpg", "png", "jpe
 mlflow.set_tracking_uri(tracking_url)  # Set the path to your MLflow tracking server
 
 # Load the PyTorch model from MLflow
-MODEL_NAME = 'mercon'
+MODEL_NAME = 'image_classifier'
 model_uri=f"models:/{MODEL_NAME}/{current_stage}"
 
 # Define data transformations for inference
