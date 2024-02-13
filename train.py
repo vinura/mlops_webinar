@@ -47,7 +47,7 @@ def load_data(file_name):
 shutil.rmtree('photos', True)
 os.makedirs(os.path.dirname("photos/dogs/"), exist_ok=True)
 os.makedirs(os.path.dirname("photos/cats/"), exist_ok=True)
-# os.makedirs(os.path.dirname("photos/cars/"), exist_ok=True)
+os.makedirs(os.path.dirname("photos/cars/"), exist_ok=True)
 
 
 dgimages = load_data('pet_dog')
@@ -55,17 +55,17 @@ download_images(dgimages, "photos/dogs/", "dog")
 
 ctimages = load_data('pet_cat')
 download_images(ctimages, "photos/cats/", "cat")
-classes_num = 2
+# classes_num = 2
 
-# carimages = load_data('super_car')
-# download_images(carimages, "photos/cars/", "car")
-# classes_num = 3
+carimages = load_data('super_car')
+download_images(carimages, "photos/cars/", "car")
+classes_num = 3
 
 # filtering and deleting very small files
 for path, subdirs, files in os.walk("photos"):
     for name in files:
       file = os.path.join(path, name)
-      if os.path.getsize(file) < 8 * 1024:
+      if os.path.getsize(file) < 24 * 1024:
         os.remove(file)
 
 
